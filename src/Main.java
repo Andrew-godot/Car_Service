@@ -1,7 +1,6 @@
 import tables.*;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +9,7 @@ public class Main {
 
         Scanner input = new Scanner(System.in); // Scanner object
 
-        // Define Variables
+        // Define integer variable menu
         int menu = 0;
 
         while (menu != 5) {
@@ -106,6 +105,7 @@ public class Main {
                         }
                     }
 
+                    // Exits system
                     System.out.println("Exiting System...");
                     System.exit(0);
 
@@ -198,6 +198,7 @@ public class Main {
                         }
                     }
 
+                    // Exits system
                     System.out.println("Exiting System...");
                     System.exit(0);
 
@@ -286,6 +287,7 @@ public class Main {
                         }
                     }
 
+                    // Exits system
                     System.out.println("Exiting System...");
                     System.exit(0);
 
@@ -376,10 +378,12 @@ public class Main {
                         }
                     }
 
+                    // Exits system
                     System.out.println("Exiting System...");
                     System.exit(0);
             }
 
+            // Exits system
             System.out.println("Exiting System...");
             System.exit(0);
         }

@@ -1,11 +1,13 @@
 package tables;
 
+// IMPORTS
 import database.DatabaseConnection;
 import java.sql.*;
 import java.util.Arrays;
 
 public class Job {
 
+    // ATTRIBUTES
     private Connection conn;
 
     public Job() {
