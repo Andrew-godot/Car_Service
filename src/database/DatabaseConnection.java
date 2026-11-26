@@ -1,5 +1,6 @@
 package database;
 
+// IMPORTS
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,17 +12,18 @@ public class DatabaseConnection {
     private static final String user = "root"; // username
     private static final String password = "root"; // password
 
+    // Methods
     // Establishes a database connection
     public static Connection getConnection() throws SQLException {
 
-        return DriverManager.getConnection(url, user, password);
+        return DriverManager.getConnection(url, user, password); // Returns the url, user and password to establish the database connection
     }
 
-    // Method
+    // Displays execution time of query
     public static void displayExecutionTime(int rowCount, long startTime) {
 
-        long endTime = System.nanoTime();
-        double executionTime = (endTime - startTime) / 1_000_000.0;
+        long endTime = System.nanoTime(); // Defines long variable endTime
+        double executionTime = (endTime - startTime) / 1_000_000.0; // Defines double variable executionTime
 
         StackTraceElement caller = Thread.currentThread().getStackTrace()[2];
 

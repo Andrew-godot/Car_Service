@@ -110,10 +110,12 @@ public class Garage {
                 System.out.println("Garage ID not found.");
             }
 
-            long startTime = System.nanoTime();
-            int rowCount = 0;
+            else {
+                long startTime = System.nanoTime();
+                int rowCount = 0;
 
-            DatabaseConnection.displayExecutionTime(rowCount, startTime);
+                DatabaseConnection.displayExecutionTime(rowCount, startTime);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

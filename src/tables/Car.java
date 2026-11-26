@@ -98,16 +98,16 @@ public class Car {
 
             int rowsUpdated = ps.executeUpdate();
 
-            if (rowsUpdated > 0) {
-                System.out.println("Car data successfully updated!");
-            } else {
+            if (rowsUpdated <= 0) {
                 System.out.println("reg number not found.");
             }
 
-            long startTime = System.nanoTime();
-            int rowCount = 0;
+            else {
+                long startTime = System.nanoTime();
+                int rowCount = 0;
 
-            DatabaseConnection.displayExecutionTime(rowCount, startTime);
+                DatabaseConnection.displayExecutionTime(rowCount, startTime);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

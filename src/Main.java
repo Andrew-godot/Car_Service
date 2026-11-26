@@ -1,6 +1,5 @@
-import tables.*;
-
 // IMPORTS
+import tables.*;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -10,26 +9,25 @@ public class Main {
 
         Scanner input = new Scanner(System.in); // Scanner object
 
-        // Define integer variable menu
-        int menu = 0;
+        int menu = 0; // Define integer variable menu
 
         // While loop that will run only if menu is not equal to 5
         while (menu != 5) {
             System.out.println("1: Garage, 2: Job, 3: Car, 4: Customer, 5: Exit");
-            menu = Integer.parseInt(input.nextLine());
+            menu = Integer.parseInt(input.nextLine()); // Gets user input
 
             // switch : case statements (Tables)
             switch (menu) {
                 case 1:
 
                     // GARAGE
-                    Garage garage;
-                    menu = 0; // Set menu variable to 0
+                    Garage garage; // Declares variable called garage that holds a reference to Garage object
+                    menu = 0; // Set menu variable to 0 for submenu selection
 
                     // While loop that will run only if menu is not equal to 5
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
-                        menu = Integer.parseInt(input.nextLine());
+                        menu = Integer.parseInt(input.nextLine()); // Gets user input
 
                         // switch : case statements (Garage)
                         switch (menu) {
@@ -39,50 +37,50 @@ public class Main {
                                 garage = new Garage(); // Creates new Garage object
                                 garage.selectStatement(); // Calls method selectStatement from Garage.java
 
-                                break;
+                                break; // Exits switch block
 
                             case 2:
                                 // INSERT
 
                                 System.out.println("Enter the data in the following format: garageID,garageName,address,town,postcode,contactNo");
-                                String insertData = input.nextLine();
+                                String insertData = input.nextLine(); // Gets user input
 
                                 garage = new Garage(); // Creates new Garage object
                                 garage.insertStatement(insertData); // Calls method insertStatement from Garage.java with parameter insertData
 
-                                break;
+                                break; // Exits switch block
 
                             case 3:
                                 // UPDATE
 
                                 System.out.println("Enter the Garage ID you want to update:");
-                                String garageID = input.nextLine();
+                                String garageID = input.nextLine(); // Gets user input
 
                                 System.out.println("Which column would you like to update?\n1: garageName\n2: address\n3: town\n4: postcode\n5: contactNo");
-                                int choice = Integer.parseInt(input.nextLine());
+                                int choice = Integer.parseInt(input.nextLine()); // Gets user input
 
                                 String column = "";
 
                                 switch (choice) {
                                     case 1:
                                         column = "garageName";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 2:
                                         column = "address";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 3:
                                         column = "town";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 4:
                                         column = "postcode";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 5:
                                         column = "contactNo";
-                                        break;
+                                        break; // Exits switch block
 
                                     default:
                                         System.out.println("Invalid choice!");
@@ -90,23 +88,23 @@ public class Main {
                                 }
 
                                 System.out.println("Enter the new value:");
-                                String newValue = input.nextLine();
+                                String newValue = input.nextLine(); // Gets user input
 
                                 garage = new Garage(); // Creates new Garage object
                                 garage.updateStatement(garageID, column, newValue); // Calls method updateStatement from Garage.java with parameters garageID, column, newValue
 
-                                break;
+                                break; // Exits switch block
 
                             case 4:
                                 // DELETE
 
                                 System.out.println("Enter the garage ID");
-                                String deleteData = input.nextLine();
+                                String deleteData = input.nextLine(); // Gets user input
 
                                 garage = new Garage(); // Creates new Garage object
                                 garage.deleteStatement(deleteData); // Calls method deleteStatement from Garage.java with parameter deleteData
 
-                                break;
+                                break; // Exits switch block
                         }
                     }
 
@@ -117,13 +115,13 @@ public class Main {
                 case 2:
 
                     // JOB
-                    Job job;
-                    menu = 0;  // Sets menu to 0
+                    Job job; // Declares variable called job that holds a reference to Job object
+                    menu = 0;  // Sets menu to 0 for submenu selection
 
                     // While loop that will run only if menu is not equal to 5
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
-                        menu = Integer.parseInt(input.nextLine());
+                        menu = Integer.parseInt(input.nextLine()); // Gets user input
 
                         // switch : case statements (Job)
                         switch (menu) {
@@ -133,27 +131,27 @@ public class Main {
                                 job = new Job(); // Creates new Job object
                                 job.selectStatement(); // Calls method selectStatement from Job.java
 
-                                break;
+                                break; // Exits switch block
 
                             case 2:
                                 // INSERT
 
                                 System.out.println("Enter the data in the following format: jobID,garageID,dateIn,dateOut,regNo,cost");
-                                String insertData = input.nextLine();
+                                String insertData = input.nextLine(); // Gets user input
 
                                 job = new Job(); // Creates new Job object
                                 job.insertStatement(insertData); // Calls method insertStatement from Job.java with parameter insertData
 
-                                break;
+                                break; // Exits switch block
 
                             case 3:
                                 // UPDATE
 
                                 System.out.println("Enter the Job ID you want to update:");
-                                String jobID = input.nextLine();
+                                String jobID = input.nextLine(); // Gets user input
 
                                 System.out.println("Which column would you like to update?\n1: garageID\n2: dateIn\n3: dateOut\n4: regNo\n5: cost");
-                                int choice = Integer.parseInt(input.nextLine());
+                                int choice = Integer.parseInt(input.nextLine()); // Gets user input
 
                                 String column = "";
 
@@ -161,23 +159,23 @@ public class Main {
                                 switch (choice) {
                                     case 1:
                                         column = "garageID";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 2:
                                         column = "dateIn";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 3:
                                         column = "dateOut";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 4:
                                         column = "regNo";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 5:
                                         column = "cost";
-                                        break;
+                                        break; // Exits switch block
 
                                     default:
                                         System.out.println("Invalid choice!");
@@ -185,23 +183,23 @@ public class Main {
                                 }
 
                                 System.out.println("Enter the new value:");
-                                String newValue = input.nextLine();
+                                String newValue = input.nextLine(); // Gets user input
 
                                 job = new Job(); // Creates new job object
                                 job.updateStatement(jobID, column, newValue); // Calls method updateStatement from Job.java with parameters jobID, column, newValue
 
-                                break;
+                                break; // Exits switch block
 
                             case 4:
                                 // DELETE
 
                                 System.out.println("Enter the job ID");
-                                String deleteData = input.nextLine();
+                                String deleteData = input.nextLine(); // Gets user input
 
                                 job = new Job(); // Creates new job object
                                 job.deleteStatement(deleteData); // Calls method deleteStatement from Garage.java with parameter deleteData
 
-                                break;
+                                break; // Exits switch block
 
                         }
                     }
@@ -213,13 +211,13 @@ public class Main {
                 case 3:
 
                     // CAR
-                    Car car;
-                    menu = 0;  // Sets menu to 0
+                    Car car; // Declares variable called car that holds a reference to Car object
+                    menu = 0; // Sets menu to 0 for submenu selection
 
                     // While loop that will run only if menu is not equal to 5
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
-                        menu = Integer.parseInt(input.nextLine());
+                        menu = Integer.parseInt(input.nextLine()); // Gets user input
 
                         // switch : case statements (Car)
                         switch (menu) {
@@ -229,46 +227,46 @@ public class Main {
                                 car = new Car(); // Creates new Car object
                                 car.selectStatement(); // Calls method selectStatement from Car.java
 
-                                break;
+                                break; // Exits switch block
 
                             case 2:
                                 // INSERT
 
                                 System.out.println("Enter the data in the following format: regNo,make,model,year,customerID");
-                                String insertData = input.nextLine();
+                                String insertData = input.nextLine(); // Gets user input
 
                                 car = new Car(); // Creates new Car object
                                 car.insertStatement(insertData); // Calls method insertStatement from Car.java with parameter insertData
 
-                                break;
+                                break; // Exits switch block
 
                             case 3:
                                 // UPDATE
 
                                 System.out.println("Enter the Reg Number you want to update:");
-                                String regNo = input.nextLine();
+                                String regNo = input.nextLine(); // Gets user input
 
                                 System.out.println("Which column would you like to update?\n1: make\n2: model\n3: year\n4: customerID");
-                                int choice = Integer.parseInt(input.nextLine());
+                                int choice = Integer.parseInt(input.nextLine()); // Gets user input
 
                                 String column = "";
 
                                 switch (choice) {
                                     case 1:
                                         column = "make";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 2:
                                         column = "model";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 3:
                                         column = "year";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 4:
                                         column = "customerID";
-                                        break;
+                                        break; // Exits switch block
 
                                     default:
                                         System.out.println("Invalid choice!");
@@ -276,23 +274,23 @@ public class Main {
                                 }
 
                                 System.out.println("Enter the new value:");
-                                String newValue = input.nextLine();
+                                String newValue = input.nextLine(); // Gets user input
 
                                 car = new Car(); // Creates new Car object
                                 car.updateStatement(regNo, column, newValue); // Calls method updateStatement from Car.java with parameters regNo, column, newValue
 
-                                break;
+                                break; // Exits switch block
 
                             case 4:
                                 // DELETE
 
                                 System.out.println("Enter the Reg Number");
-                                String deleteData = input.nextLine();
+                                String deleteData = input.nextLine(); // Gets user input
 
                                 car = new Car(); // Creates new Car object
                                 car.deleteStatement(deleteData); // Calls method deleteStatement from Car.java with parameter deleteData
 
-                                break;
+                                break; // Exits switch block
 
                         }
                     }
@@ -305,12 +303,12 @@ public class Main {
 
                     // CUSTOMER
                     Customer customer;
-                    menu = 0; // Sets menu to 0
+                    menu = 0; // Sets menu to 0 for submenu selection
 
                     // While loop that will run only if menu is not equal to 5
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
-                        menu = Integer.parseInt(input.nextLine());
+                        menu = Integer.parseInt(input.nextLine()); // Gets user input
 
                         // switch : case statements (Customer)
                         switch (menu) {
@@ -320,50 +318,50 @@ public class Main {
                                 customer = new Customer(); // Creates new Customer object
                                 customer.selectStatement(); // Calls method selectStatement from Customer.java
 
-                                break;
+                                break; // Exits switch block
 
                             case 2:
                                 // INSERT
 
                                 System.out.println("Enter the data in the following format: customerID,forename,surname,address,postcode,phoneNo");
-                                String insertData = input.nextLine();
+                                String insertData = input.nextLine(); // Gets user input
 
                                 customer = new Customer(); // Creates new Customer object
                                 customer.insertStatement(insertData); // Calls method deleteStatement from Customer.java with parameter insertData
 
-                                break;
+                                break; // Exits switch block
 
                             case 3:
                                 // UPDATE
 
                                 System.out.println("Enter the reg number you want to update:");
-                                String customerID = input.nextLine();
+                                String customerID = input.nextLine(); // Gets user input
 
                                 System.out.println("Which column would you like to update?\n1: forename\n2: surname\n3: address\n4: postcode\n5: phoneNo");
-                                int choice = Integer.parseInt(input.nextLine());
+                                int choice = Integer.parseInt(input.nextLine()); // Gets user input
 
                                 String column = "";
 
                                 switch (choice) {
                                     case 1:
                                         column = "forename";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 2:
                                         column = "surname";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 3:
                                         column = "address";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 4:
                                         column = "postcode";
-                                        break;
+                                        break; // Exits switch block
 
                                     case 5:
                                         column = "phoneNo";
-                                        break;
+                                        break; // Exits switch block
 
                                     default:
                                         System.out.println("Invalid choice!");
@@ -371,22 +369,22 @@ public class Main {
                                 }
 
                                 System.out.println("Enter the new value:");
-                                String newValue = input.nextLine();
+                                String newValue = input.nextLine(); // Gets user input
 
                                 customer = new Customer(); // Creates new Customer object
                                 customer.updateStatement(customerID, column, newValue); // Calls method updateStatement from Customer.java with parameters customerID, column, newValue
 
-                                break;
+                                break; // Exits switch block
                             case 4:
                                 // DELETE
 
                                 System.out.println("Enter the customer ID");
-                                String deleteData = input.nextLine();
+                                String deleteData = input.nextLine(); // Gets user input
 
                                 customer = new Customer(); // Creates new Customer object
                                 customer.deleteStatement(deleteData); // Calls method deleteStatement from Customer.java with parameter deleteData
 
-                                break;
+                                break; // Exits switch block
                         }
                     }
 
