@@ -1,5 +1,6 @@
 import tables.*;
 
+// IMPORTS
 import java.sql.*;
 import java.util.Scanner;
 
@@ -16,23 +17,25 @@ public class Main {
             System.out.println("1: Garage, 2: Job, 3: Car, 4: Customer, 5: Exit");
             menu = Integer.parseInt(input.nextLine());
 
+            // switch : case statements (Tables)
             switch (menu) {
                 case 1:
 
                     // GARAGE
                     Garage garage;
-                    menu = 0;
+                    menu = 0; // Set menu variable to 0
 
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
                         menu = Integer.parseInt(input.nextLine());
 
+                        // switch : case statements (Garage)
                         switch (menu) {
                             case 1:
                                 // SELECT
 
-                                garage = new Garage();
-                                garage.selectStatement();
+                                garage = new Garage(); // Creates new Garage object
+                                garage.selectStatement(); // Calls method selectStatement from Garage.java
 
                                 break;
 
@@ -42,8 +45,8 @@ public class Main {
                                 System.out.println("Enter the data in the following format: garageID,garageName,address,town,postcode,contactNo");
                                 String insertData = input.nextLine();
 
-                                garage = new Garage();
-                                garage.insertStatement(insertData);
+                                garage = new Garage(); // Creates new Garage object
+                                garage.insertStatement(insertData); // Calls method insertStatement from Garage.java with parameter insertData
 
                                 break;
 
@@ -87,8 +90,8 @@ public class Main {
                                 System.out.println("Enter the new value:");
                                 String newValue = input.nextLine();
 
-                                garage = new Garage();
-                                garage.updateStatement(garageID, column, newValue);
+                                garage = new Garage(); // Creates new Garage object
+                                garage.updateStatement(garageID, column, newValue); // Calls method updateStatement from Garage.java with parameters garageID, column, newValue
 
                                 break;
 
@@ -98,8 +101,8 @@ public class Main {
                                 System.out.println("Enter the garage ID");
                                 String deleteData = input.nextLine();
 
-                                garage = new Garage();
-                                garage.deleteStatement(deleteData);
+                                garage = new Garage(); // Creates new Garage object
+                                garage.deleteStatement(deleteData); // Calls method deleteStatement from Garage.java with parameter deleteData
 
                                 break;
                         }
@@ -113,18 +116,19 @@ public class Main {
 
                     // JOB
                     Job job;
-                    menu = 0;
+                    menu = 0;  // Sets menu to 0
 
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
                         menu = Integer.parseInt(input.nextLine());
 
+                        // switch : case statements (Job)
                         switch (menu) {
                             case 1:
                                 // SELECT
 
-                                job = new Job();
-                                job.selectStatement();
+                                job = new Job(); // Creates new Job object
+                                job.selectStatement(); // Calls method selectStatement from Job.java
 
                                 break;
 
@@ -134,8 +138,8 @@ public class Main {
                                 System.out.println("Enter the data in the following format: jobID,garageID,dateIn,dateOut,regNo,cost");
                                 String insertData = input.nextLine();
 
-                                job = new Job();
-                                job.insertStatement(insertData);
+                                job = new Job(); // Creates new Job object
+                                job.insertStatement(insertData); // Calls method insertStatement from Job.java with parameter insertData
 
                                 break;
 
@@ -150,6 +154,7 @@ public class Main {
 
                                 String column = "";
 
+                                // switch : case statements
                                 switch (choice) {
                                     case 1:
                                         column = "garageID";
@@ -179,8 +184,8 @@ public class Main {
                                 System.out.println("Enter the new value:");
                                 String newValue = input.nextLine();
 
-                                job = new Job();
-                                job.updateStatement(jobID, column, newValue);
+                                job = new Job(); // Creates new job object
+                                job.updateStatement(jobID, column, newValue); // Calls method updateStatement from Job.java with parameters jobID, column, newValue
 
                                 break;
 
@@ -190,8 +195,8 @@ public class Main {
                                 System.out.println("Enter the job ID");
                                 String deleteData = input.nextLine();
 
-                                job = new Job();
-                                job.deleteStatement(deleteData);
+                                job = new Job(); // Creates new job object
+                                job.deleteStatement(deleteData); // Calls method deleteStatement from Garage.java with parameter deleteData
 
                                 break;
 
@@ -205,19 +210,20 @@ public class Main {
                 case 3:
 
                     // CAR
-                    Car car = new Car();
-                    menu = 0;
+                    Car car;
+                    menu = 0;  // Sets menu to 0
 
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
                         menu = Integer.parseInt(input.nextLine());
 
+                        // switch : case statements (Car)
                         switch (menu) {
                             case 1:
                                 // SELECT
 
-                                car = new Car();
-                                car.selectStatement();
+                                car = new Car(); // Creates new Car object
+                                car.selectStatement(); // Calls method selectStatement from Car.java
 
                                 break;
 
@@ -227,8 +233,8 @@ public class Main {
                                 System.out.println("Enter the data in the following format: regNo,make,model,year,customerID");
                                 String insertData = input.nextLine();
 
-                                car = new Car();
-                                car.insertStatement(insertData);
+                                car = new Car(); // Creates new Car object
+                                car.insertStatement(insertData); // Calls method insertStatement from Car.java with parameter insertData
 
                                 break;
 
@@ -268,8 +274,8 @@ public class Main {
                                 System.out.println("Enter the new value:");
                                 String newValue = input.nextLine();
 
-                                car = new Car();
-                                car.updateStatement(regNo, column, newValue);
+                                car = new Car(); // Creates new Car object
+                                car.updateStatement(regNo, column, newValue); // Calls method updateStatement from Car.java with parameters regNo, column, newValue
 
                                 break;
 
@@ -279,8 +285,8 @@ public class Main {
                                 System.out.println("Enter the Reg Number");
                                 String deleteData = input.nextLine();
 
-                                car = new Car();
-                                car.deleteStatement(deleteData);
+                                car = new Car(); // Creates new Car object
+                                car.deleteStatement(deleteData); // Calls method deleteStatement from Car.java with parameter deleteData
 
                                 break;
 
@@ -294,19 +300,20 @@ public class Main {
                 case 4:
 
                     // CUSTOMER
-                    Customer customer = new Customer();
-                    menu = 0;
+                    Customer customer;
+                    menu = 0; // Sets menu to 0
 
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
                         menu = Integer.parseInt(input.nextLine());
 
+                        // switch : case statements (Customer)
                         switch (menu) {
                             case 1:
                                 // SELECT
 
-                                customer = new Customer();
-                                customer.selectStatement();
+                                customer = new Customer(); // Creates new Customer object
+                                customer.selectStatement(); // Calls method selectStatement from Customer.java
 
                                 break;
 
@@ -316,8 +323,8 @@ public class Main {
                                 System.out.println("Enter the data in the following format: customerID,forename,surname,address,postcode,phoneNo");
                                 String insertData = input.nextLine();
 
-                                customer = new Customer();
-                                customer.insertStatement(insertData);
+                                customer = new Customer(); // Creates new Customer object
+                                customer.insertStatement(insertData); // Calls method deleteStatement from Customer.java with parameter insertData
 
                                 break;
 
@@ -361,8 +368,8 @@ public class Main {
                                 System.out.println("Enter the new value:");
                                 String newValue = input.nextLine();
 
-                                customer = new Customer();
-                                customer.updateStatement(customerID, column, newValue);
+                                customer = new Customer(); // Creates new Customer object
+                                customer.updateStatement(customerID, column, newValue); // Calls method updateStatement from Customer.java with parameters customerID, column, newValue
 
                                 break;
                             case 4:
@@ -371,8 +378,8 @@ public class Main {
                                 System.out.println("Enter the customer ID");
                                 String deleteData = input.nextLine();
 
-                                customer = new Customer();
-                                customer.deleteStatement(deleteData);
+                                customer = new Customer(); // Creates new Customer object
+                                customer.deleteStatement(deleteData); // Calls method deleteStatement from Customer.java with parameter deleteData
 
                                 break;
                         }
