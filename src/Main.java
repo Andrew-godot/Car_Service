@@ -235,7 +235,7 @@ public class Main {
                             case 3:
                                 // UPDATE
 
-                                System.out.println("Enter the reg number you want to update:");
+                                System.out.println("Enter the Reg Number you want to update:");
                                 String regNo = input.nextLine();
 
                                 System.out.println("Which column would you like to update?\n1: make\n2: model\n3: year\n4: customerID");
@@ -276,7 +276,7 @@ public class Main {
                             case 4:
                                 // DELETE
 
-                                System.out.println("Enter the  reg number");
+                                System.out.println("Enter the Reg Number");
                                 String deleteData = input.nextLine();
 
                                 car = new Car();

@@ -54,24 +54,28 @@ public class Garage {
                 return;
             }
 
-            PreparedStatement ps = conn.prepareStatement(sql_insert);
-
-            for (int i = 0; i < storedData.length; i++) {
-                ps.setString(i + 1, storedData[i].trim());
-
+            if (checkExistingPrimary(storedData)) {
+                System.out.printf("ERROR 1062 (23000): Duplicate entry '%s' for key 'PRIMARY'\n", storedData[0]);
             }
 
-            int row = ps.executeUpdate();
-            System.out.println(row);
+            else {
+                PreparedStatement ps = conn.prepareStatement(sql_insert);
 
-            ps.close();
+                for (int i = 0; i < storedData.length; i++) {
+                    ps.setString(i + 1, storedData[i].trim());
 
-            System.out.println("Garage data successfully added!");
+                }
 
-            long startTime = System.nanoTime();
-            int rowCount = 0;
+                int row = ps.executeUpdate();
+                System.out.println(row);
 
-            DatabaseConnection.displayExecutionTime(rowCount, startTime);
+                ps.close();
+
+                long startTime = System.nanoTime();
+                int rowCount = 0;
+
+                DatabaseConnection.displayExecutionTime(rowCount, startTime);
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -102,9 +106,7 @@ public class Garage {
 
             int rowsUpdated = ps.executeUpdate();
 
-            if (rowsUpdated > 0) {
-                System.out.println("Garage data successfully updated!");
-            } else {
+            if (rowsUpdated <= 0) {
                 System.out.println("Garage ID not found.");
             }
 
@@ -122,19 +124,71 @@ public class Garage {
 
         String sql_delete = "DELETE FROM car_service.garage WHERE garage.garageID = ?";
 
-        PreparedStatement ps = conn.prepareStatement(sql_delete);
-        ps.setString(1, deleteData);
+        if (checkExistingPrimary(deleteData)) {
+            PreparedStatement ps = conn.prepareStatement(sql_delete);
+            ps.setString(1, deleteData);
 
-        int row = ps.executeUpdate();
-        System.out.println(row);
+            int row = ps.executeUpdate();
+            System.out.println(row);
 
-        ps.close();
+            ps.close();
 
-        System.out.println("Garage data successfully deleted!");
+            long startTime = System.nanoTime();
+            int rowCount = 0;
 
-        long startTime = System.nanoTime();
-        int rowCount = 0;
+            DatabaseConnection.displayExecutionTime(rowCount, startTime);
+        }
 
-        DatabaseConnection.displayExecutionTime(rowCount, startTime);
+        else {
+            System.out.println("Query OK, 0 rows affected (0.001 sec)");
+        }
+
+
+    }
+
+    public boolean checkExistingPrimary(String storedData[]) {
+
+        // storedData[0] is the primary id
+        String sql_exists = "SELECT EXISTS (SELECT 1 FROM car_service.garage WHERE garage.garageID = ?)";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql_exists);
+
+            ps.setString(1, storedData[0]);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return false;
+    }
+
+    public boolean checkExistingPrimary(String deleteData) {
+
+        // deleteData is the primary id
+        String sql_exists = "SELECT EXISTS (SELECT 1 FROM car_service.garage WHERE garage.garageID = ?)";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql_exists);
+
+            ps.setString(1, deleteData);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return false;
     }
 }

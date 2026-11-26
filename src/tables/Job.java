@@ -51,23 +51,26 @@ public class Job {
                 return;
             }
 
-            PreparedStatement ps = conn.prepareStatement(sql_insert);
+            if (checkExistingPrimary(storedData)) {
+                System.out.printf("ERROR 1062 (23000): Duplicate entry '%s' for key 'PRIMARY'\n", storedData[0]);
+            } else {
+                PreparedStatement ps = conn.prepareStatement(sql_insert);
 
-            for (int i = 0; i < storedData.length; i++) {
-                ps.setString(i + 1, storedData[i].trim());
+                for (int i = 0; i < storedData.length; i++) {
+                    ps.setString(i + 1, storedData[i].trim());
+
+                }
+
+                int row = ps.executeUpdate();
+                System.out.println(row);
+
+                ps.close();
+
+                long startTime = System.nanoTime();
+                int rowCount = 0;
+
+                DatabaseConnection.displayExecutionTime(rowCount, startTime);
             }
-
-            int row = ps.executeUpdate();
-            System.out.println(row);
-
-            ps.close();
-
-            System.out.println("Job data successfully added!");
-
-            long startTime = System.nanoTime();
-            int rowCount = 0;
-
-            DatabaseConnection.displayExecutionTime(rowCount, startTime);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -118,19 +121,70 @@ public class Job {
 
         String sql_delete = "DELETE FROM car_service.job WHERE job.jobID = ?";
 
-        PreparedStatement ps = conn.prepareStatement(sql_delete);
-        ps.setString(1, deleteData);
+        if (checkExistingPrimary(deleteData)) {
 
-        int row = ps.executeUpdate();
-        System.out.println(row);
+            PreparedStatement ps = conn.prepareStatement(sql_delete);
+            ps.setString(1, deleteData);
 
-        ps.close();
+            int row = ps.executeUpdate();
+            System.out.println(row);
 
-        System.out.println("Job data successfully deleted!");
+            ps.close();
 
-        long startTime = System.nanoTime();
-        int rowCount = 0;
+            long startTime = System.nanoTime();
+            int rowCount = 0;
 
-        DatabaseConnection.displayExecutionTime(rowCount, startTime);
+            DatabaseConnection.displayExecutionTime(rowCount, startTime);
+        }
+
+        else {
+            System.out.println("Query OK, 0 rows affected (0.001 sec)");
+        }
+    }
+
+    public boolean checkExistingPrimary(String storedData[]) {
+
+        // storedData[0] is the primary id
+        String sql_exists = "SELECT EXISTS (SELECT 1 FROM car_service.job WHERE job.jobID = ?)";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql_exists);
+
+            ps.setString(1, storedData[0]);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return false;
+    }
+
+    public boolean checkExistingPrimary(String deleteData) {
+
+        // deleteData is the primary id
+        String sql_exists = "SELECT EXISTS (SELECT 1 FROM car_service.job WHERE job.jobID = ?)";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql_exists);
+
+            ps.setString(1, deleteData);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return false;
     }
 }
