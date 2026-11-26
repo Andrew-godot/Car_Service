@@ -13,6 +13,7 @@ public class Main {
         // Define integer variable menu
         int menu = 0;
 
+        // While loop that will run only if menu is not equal to 5
         while (menu != 5) {
             System.out.println("1: Garage, 2: Job, 3: Car, 4: Customer, 5: Exit");
             menu = Integer.parseInt(input.nextLine());
@@ -25,6 +26,7 @@ public class Main {
                     Garage garage;
                     menu = 0; // Set menu variable to 0
 
+                    // While loop that will run only if menu is not equal to 5
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
                         menu = Integer.parseInt(input.nextLine());
@@ -118,6 +120,7 @@ public class Main {
                     Job job;
                     menu = 0;  // Sets menu to 0
 
+                    // While loop that will run only if menu is not equal to 5
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
                         menu = Integer.parseInt(input.nextLine());
@@ -213,6 +216,7 @@ public class Main {
                     Car car;
                     menu = 0;  // Sets menu to 0
 
+                    // While loop that will run only if menu is not equal to 5
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
                         menu = Integer.parseInt(input.nextLine());
@@ -303,6 +307,7 @@ public class Main {
                     Customer customer;
                     menu = 0; // Sets menu to 0
 
+                    // While loop that will run only if menu is not equal to 5
                     while (menu != 5) {
                         System.out.println("1: Select, 2: Insert, 3: Update, 4: Delete, 5: Exit");
                         menu = Integer.parseInt(input.nextLine());
